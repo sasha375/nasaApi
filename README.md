@@ -1,9 +1,7 @@
 # Spacey
-
-## main.py
-- Описание
+- Подготовка
     ```
-    Главный файл
+    pip install -r requirements.txt
     ```
 - Возможности
 
