@@ -25,3 +25,6 @@ def main():
         print(get_flight(args.flight_id))
     else:
         print(get_flight_images(args.flight_id))
+
+if __name__ == "__main__":
+    main()
