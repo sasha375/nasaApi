@@ -7,13 +7,13 @@ import time
 import telegram
 import epic, apod, spacex, download
 
-load_dotenv(".env")
-load_dotenv(".secure/.env")
-
 os.makedirs("images", exist_ok=True)
 NASA_API_KEY = os.environ['NASA_API_KEY']
 
 def main():
+    load_dotenv(".env")
+    load_dotenv(".secure/.env")
+
     bot = telegram.initBot(os.environ["TELEGRAM_TOKEN"])
 
     date = epic.get_epic_dates(NASA_API_KEY)[0]
