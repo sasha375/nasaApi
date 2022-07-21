@@ -1,7 +1,10 @@
 import datetime
 import requests
 
-from url_builder import build_url
+def build_url(url, params):
+    if params:
+        url += "?" + "&".join([f"{k}={v}" for k, v in params.items()])
+    return url
 
 def get_epic_dates(api_key):
     response = requests.get("https://api.nasa.gov/EPIC/api/natural/all", params={"api_key":api_key})
