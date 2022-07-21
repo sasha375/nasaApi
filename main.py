@@ -40,7 +40,7 @@ def main():
     random.shuffle(imageList)
     while True:
         for imageToPost in imageList:
-            telegram.sendImage(bot, os.environ["CHANNEL_ID"], imageToPost)
+            telegram.sendImage(bot, os.environ["TELEGRAM_CHANNEL_ID"], imageToPost)
             time.sleep(int(os.environ["PUBLISH_TIME"]))
         imageList = random.shuffle(imageList)
 

@@ -27,7 +27,7 @@
         ```
         TELEGRAM_TOKEN= ТОКЕН_ТЕЛЕГРАМ
         NASA_API_KEY=   ТОКЕН_НАСА
-        CHANNEL_ID=     ID_ТЕЛЕГРАМ_КАНАЛА
+        TELEGRAM_CHANNEL_ID=     ID_ТЕЛЕГРАМ_КАНАЛА
         ```
 ## telegram.py
 - Описание
