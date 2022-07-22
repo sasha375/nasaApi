@@ -17,7 +17,6 @@ def main():
                         help='SpaceX flight id', required=True)
     parser.add_argument('--raw-json', default=False,
                         action="store_true", help='Get raw flight data')
-    parser.add_argument('--api-key', type=str, help='NASA Api Key', required=True)
     
     args = parser.parse_args()
 
