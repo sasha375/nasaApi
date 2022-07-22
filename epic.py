@@ -32,17 +32,19 @@ def main():
     parser.add_argument('--date', default=None, type=str, help='Date to download')
     parser.add_argument('--image-id', default=None, type=str, help='Image id to download')
     parser.add_argument('--api-key', type=str, help='NASA Api Key', required=True)
-    
+
     args = parser.parse_args()
+
+    no_flags = False
     if not (args.get_dates or args.get_images or args.get_image_url):
         parser.print_help()
-        print("ERROR: there is no get-dates, get-images or get-image-url flags")
+        no_flags = True
         exit(1)
     if (args.get_dates and args.get_images) or (args.get_images and args.get_image_url) or (args.get_dates and args.get_image_url):
         parser.print_help()
         print("ERROR: there is two flags specified")
         exit(1)
-    if args.get_dates:
+    if args.get_dates or no_flags:
         print(get_epic_dates(args.api_key))
     elif args.get_images:
         if args.date == None:

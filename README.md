@@ -116,7 +116,7 @@
     &#9745; Использование как библииотеку python
 - Запуск
     ```
-    python spacex.py --flight-id FLIGHT_ID [--raw-json]
+    python spacex.py [--flight-id FLIGHT_ID] [--raw-json]
     ```
 - Зависимости
     ```
