@@ -14,7 +14,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Tool for downloading SpaceX flight images.')
     parser.add_argument('--flight-id', type=str, 
-                        help='SpaceX flight id', default="eb87d47ffd86e000604b38a")
+                        help='SpaceX flight id', default="5eb87d47ffd86e000604b38a")
     parser.add_argument('--raw-json', default=False,
                         action="store_true", help='Get raw flight data')
     
