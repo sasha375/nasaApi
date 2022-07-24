@@ -46,28 +46,6 @@
     ```
     python telegram.py CHANNEL_ID IMAGE_PATH BOT_TOKEN
     ```
-- Зависимости
-    ```
-    requests
-    ```
-## download.py
-- Описание
-    ```
-    Скачивание фото
-    ```
-- Возможности
-
-    &#9745; Параметры командной строки
-
-    &#9745; Использование как библииотеку python
-- Запуск
-    ```
-    python download.py IMAGE_URL IMAGE_PATH
-    ```
-- Зависимости
-    ```
-    requests
-    ```
 ## apod.py
 - Описание
     ```
@@ -81,10 +59,6 @@
 - Запуск
     ```
     python apod.py [--count COUNT] --api-key NASA_API_KEY
-    ```
-- Зависимости
-    ```
-    requests
     ```
 ## epic.py
 - Описание
@@ -100,10 +74,6 @@
     ```
     python epic.py [--get-dates] [--get-images --date DATE] [--get-image-url --date DATE --image-id IMAGE_ID] --api-key NASA_API_KEY
     ```
-- Зависимости
-    ```
-    requests
-    ```
 ## spacex.py
 - Описание
     ```
@@ -117,24 +87,4 @@
 - Запуск
     ```
     python spacex.py [--flight-id FLIGHT_ID] [--raw-json]
-    ```
-- Зависимости
-    ```
-    requests
-    ```
-## url_builder.py
-- Описание
-    ```
-    Утилита для отображения ссылки
-    ```
-- Возможности
-
-    &#9744; Параметры командной строки
-
-    &#9745; Использование как библииотеку python
-- Запуск
-    ```
-    ```
-- Зависимости
-    ```
     ```
