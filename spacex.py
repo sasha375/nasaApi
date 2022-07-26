@@ -1,5 +1,8 @@
+import os
 import requests
 import argparse
+
+from download import download_image
 
 def get_flight(flight_id):
     response = requests.get("https://api.spacexdata.com/v5/launches/{}".format(flight_id))
@@ -17,13 +20,22 @@ def main():
                         help='SpaceX flight id', default="5eb87d47ffd86e000604b38a")
     parser.add_argument('--raw-json', default=False,
                         action="store_true", help='Get raw flight data')
+    parser.add_argument('--no-download', default=False,
+                        action="store_true", help='Do not download photos')
     
     args = parser.parse_args()
 
+    flight_json = get_flight(args.flight_id)
+    flight_images = flight_json["links"]["flickr"]["original"]
     if args.raw_json:
-        print(get_flight(args.flight_id))
+        print(flight_json)
     else:
-        print(get_flight_images(args.flight_id))
+        print(flight_images)
+    
+    if not args.no_download:
+        for index, url in enumerate(flight_images):
+            extention = os.path.splitext(url)[1]
+            download_image(url, f"spacex-{index}{extention}")
 
 if __name__ == "__main__":
     main()
