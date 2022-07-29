@@ -25,7 +25,8 @@ def main():
     if not args.no_download:
         for index, url in enumerate(urls):
             extention = os.path.splitext(url)[1]
-            download_image(url, f"apod-{index}{extention}")
+            os.makedirs("images", exist_ok=True)
+            download_image(url, os.path.join("images", f"apod-{index}{extention}"))
 
     print(url)
     
