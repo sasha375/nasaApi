@@ -1,6 +1,9 @@
 import datetime
 import requests
 import argparse
+import os
+
+from download import download_image
 
 def build_url(url, params):
     if params:
@@ -31,6 +34,7 @@ def main():
                         action="store_true", help='Get all images (required: date, image-id, api_key)')
     parser.add_argument('--date', default=None, type=str, help='Date to download')
     parser.add_argument('--image-id', default=None, type=str, help='Image id to download')
+    parser.add_argument('--no-download', default=None, type=str, help='Do not download image')
     parser.add_argument('--api-key', type=str, help='NASA Api Key', required=True)
 
     args = parser.parse_args()
@@ -57,6 +61,11 @@ def main():
             parser.print_help()
             print("ERROR: --date and --image_id is required for --get-images")
             exit(1)
-        print(build_url(get_epic_image_url(args.api_key, args.date, args.image_id)))
+        url, params = get_epic_image_url(args.api_key, args.date, args.image_id)
+        print(build_url(url, params))
+        extention = os.path.splitext(url)[1]
+        if not args.no_download:
+            download_image(url, "epic-{args.date}-{args.image_id}{extention}")
+
 if __name__ == '__main__':
     main()
