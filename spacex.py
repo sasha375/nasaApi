@@ -36,7 +36,7 @@ def main():
         for index, url in enumerate(flight_images):
             extention = os.path.splitext(url)[1]
             os.makedirs("images", exist_ok=True)
-            download_image(url, os.path.join("images", "spacex-{index}{extention}"))
+            download_image(url, os.path.join("images", f"spacex-{index}{extention}"))
 
 if __name__ == "__main__":
     main()
