@@ -25,6 +25,7 @@
     ```
     requests
     python-dotenv
+    telepot
     ```
     - .env
         ```
