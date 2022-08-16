@@ -19,7 +19,7 @@ def main():
     date = epic.get_epic_dates(NASA_API_KEY)[0]
     image_id = epic.get_epic_image_ids(NASA_API_KEY, date)[0]
     url, params = epic.get_epic_image_url(NASA_API_KEY, date, image_id)
-    download.download_image(url, "images/epic-{}-{}.png".format(date, image_id), params)
+    download.download_image(url, os.path.join("images", "epic-{}-{}.png".format(date, image_id)), params)
 
     imageList = []
     
