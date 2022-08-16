@@ -3,9 +3,6 @@ import requests
 import argparse
 import os
 
-if os.path.exists(".secure/.env"):
-    dotenv.load_dotenv(".secure/.env")
-
 from download import download_image
 
 def get_apod_urls(api_key, count):
@@ -16,6 +13,9 @@ def get_apod_urls(api_key, count):
 
 
 def main():
+    if os.path.exists(".secure/.env"):
+        dotenv.load_dotenv(".secure/.env")
+
     parser = argparse.ArgumentParser(
         description='Tool for downloading NASA APOD images.')
     parser.add_argument("--count", default=1, help="Image count")

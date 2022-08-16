@@ -3,9 +3,6 @@ import requests
 import argparse
 import os
 
-if os.path.exists(".secure/.env"):
-    dotenv.load_dotenv(".secure/.env")
-
 from download import download_image
 
 def build_url(url, params):
@@ -27,6 +24,9 @@ def get_epic_image_url(api_key, date, image_id):
     return "https://api.nasa.gov/EPIC/archive/natural/{}/png/{}.png".format(date, image_id), {"api_key":api_key}
 
 def main():
+    if os.path.exists(".secure/.env"):
+        dotenv.load_dotenv(".secure/.env")
+
     parser = argparse.ArgumentParser(
         description='Tool for downloading NASA EPIC images.')
     parser.add_argument('--get-dates', default=False,
