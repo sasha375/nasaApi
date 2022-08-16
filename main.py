@@ -1,3 +1,4 @@
+import argparse
 from dotenv import load_dotenv
 import requests
 import os
@@ -8,11 +9,24 @@ import telegram
 import epic, apod, spacex, download
 
 os.makedirs("images", exist_ok=True)
-NASA_API_KEY = os.environ['NASA_API_KEY']
 
 def main():
     load_dotenv(".env")
     load_dotenv(".secure/.env")
+    NASA_API_KEY = os.environ['NASA_API_KEY']
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--publish-time", type=int, required=False)
+
+    args = parser.parse_args()
+
+    publish_time = os.environ.get("PUBLISH_TIME", None)
+    if not publish_time:
+        publish_time = args.publish_time
+        if not publish_time:
+            parser.print_help()
+            print("ERROR: specify PUBLISH_TIME in .env or args")
+
 
     bot = telegram.initBot(os.environ["TELEGRAM_TOKEN"])
 
