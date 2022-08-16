@@ -40,7 +40,7 @@ def main():
             os.makedirs("images", exist_ok=True)
             download_image(url, os.path.join("images", f"apod-{index}{extention}"))
 
-    print(url)
+    print(urls)
     
 if __name__ == "__main__":
     main()
