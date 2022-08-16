@@ -1,6 +1,10 @@
+import dotenv
 import requests
 import argparse
 import os
+
+if os.path.exists(".secure/.env"):
+    dotenv.load_dotenv(".secure/.env")
 
 from download import download_image
 
@@ -15,13 +19,13 @@ def main():
     parser = argparse.ArgumentParser(
         description='Tool for downloading NASA APOD images.')
     parser.add_argument("--count", default=1, help="Image count")
-    parser.add_argument("--api-key", type=str, help="NASA Api key", required=True)
+    parser.add_argument("--api-key", type=str, help="NASA Api key", required=False)
     parser.add_argument('--no-download', default=False,
                         action="store_true", help='Do not download photos')
 
     args = parser.parse_args()
 
-    urls = get_apod_urls(args.api_key, args.count)
+    urls = get_apod_urls(api_key, args.count)
     if not args.no_download:
         for index, url in enumerate(urls):
             extention = os.path.splitext(url)[1]

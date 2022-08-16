@@ -1,7 +1,10 @@
-import datetime
+import dotenv
 import requests
 import argparse
 import os
+
+if os.path.exists(".secure/.env"):
+    dotenv.load_dotenv(".secure/.env")
 
 from download import download_image
 
@@ -35,9 +38,17 @@ def main():
     parser.add_argument('--date', default=None, type=str, help='Date to download')
     parser.add_argument('--image-id', default=None, type=str, help='Image id to download')
     parser.add_argument('--no-download', default=None, type=str, help='Do not download image')
-    parser.add_argument('--api-key', type=str, help='NASA Api Key', required=True)
+    parser.add_argument('--api-key', type=str, help='NASA Api Key', required=False)
 
     args = parser.parse_args()
+
+    api_key = args.api_key
+    if not api_key:
+        api_key = os.environ.get("NASA_API_KEY", None)
+        if not api_key:
+            parser.print_help()
+            print("ERROR: specify API_KEY (in args or .env)")
+            exit(1)
 
     no_flags = False
     if not (args.get_dates or args.get_images or args.get_image_url):
@@ -49,19 +60,19 @@ def main():
         print("ERROR: there is two flags specified")
         exit(1)
     if args.get_dates or no_flags:
-        print(get_epic_dates(args.api_key))
+        print(get_epic_dates(api_key))
     elif args.get_images:
         if args.date == None:
             parser.print_help()
             print("ERROR: --date is required for --get-images")
             exit(1)
-        print(get_epic_image_ids(args.api_key, args.date))
+        print(get_epic_image_ids(api_key, args.date))
     elif args.get_image_url:
         if args.date == None or args.image_id == None:
             parser.print_help()
             print("ERROR: --date and --image_id is required for --get-images")
             exit(1)
-        url, params = get_epic_image_url(args.api_key, args.date, args.image_id)
+        url, params = get_epic_image_url(api_key, args.date, args.image_id)
         print(build_url(url, params))
         extention = os.path.splitext(url)[1]
         if not args.no_download:
