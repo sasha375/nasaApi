@@ -25,6 +25,14 @@ def main():
 
     args = parser.parse_args()
 
+    api_key = args.api_key
+    if not api_key:
+        api_key = os.environ.get("NASA_API_KEY", None)
+        if not api_key:
+            parser.print_help()
+            print("ERROR: specify API_KEY (in args or .env)")
+            exit(1)
+
     urls = get_apod_urls(api_key, args.count)
     if not args.no_download:
         for index, url in enumerate(urls):
