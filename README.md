@@ -22,6 +22,7 @@
     python main.py
     ```
 - Зависимости
+    - Библиотеки
     ```
     requests
     python-dotenv
