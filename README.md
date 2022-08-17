@@ -23,19 +23,20 @@
     ```
 - Зависимости
     - Библиотеки
-    ```
-    requests
-    python-dotenv
-    telepot
-    ```
+        ```
+        requests==2.27.1
+        python-dotenv==0.9.1
+        telepot==12.7
+        ```
+        (Установить можно с помощью ```python -m pip install -r requirements.txt```)
     - .env
         ```
         PUBLISH_TIME=    СЕКУНДЫ_МЕЖДУ_ОТПРАВКАМИ
         ```
     - .secure/.env
         ```
-        TELEGRAM_TOKEN= ТОКЕН_ТЕЛЕГРАМ
-        NASA_API_KEY=   ТОКЕН_НАСА
+        TELEGRAM_TOKEN= ТОКЕН_ТЕЛЕГРАМ [Где взять?](https://www.siteguarding.com/en/how-to-get-telegram-bot-api-token)
+        NASA_API_KEY=   ТОКЕН_НАСА [Где взять?](https://wilsjame.github.io/how-to-nasa/)
         TELEGRAM_CHANNEL_ID=     ID_ТЕЛЕГРАМ_КАНАЛА
         ```
 ## telegram.py
