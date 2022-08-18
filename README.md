@@ -37,7 +37,7 @@
         ```
         TELEGRAM_TOKEN= ТОКЕН_ТЕЛЕГРАМ [Где взять?](https://www.siteguarding.com/en/how-to-get-telegram-bot-api-token)
         NASA_API_KEY=   ТОКЕН_НАСА [Где взять?](https://wilsjame.github.io/how-to-nasa/)
-        TELEGRAM_CHANNEL_ID=     ID_ТЕЛЕГРАМ_КАНАЛА
+        TELEGRAM_CHANNEL_ID=     ID_ТЕЛЕГРАМ_КАНАЛА [Где взять?](https://stackoverflow.com/questions/33858927/how-to-obtain-the-chat-id-of-a-private-telegram-channel)
         ```
 ## telegram.py
 - Описание
