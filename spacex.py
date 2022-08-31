@@ -9,8 +9,7 @@ def get_flight(flight_id):
     response.raise_for_status()
     return response.json()
 
-def get_flight_images(flight_id):
-    flight = get_flight(flight_id)
+def get_flight_images(flight):
     return flight["links"]["flickr"]["original"]
 
 def main():
@@ -26,7 +25,7 @@ def main():
     args = parser.parse_args()
 
     flight_json = get_flight(args.flight_id)
-    flight_images = flight_json["links"]["flickr"]["original"]
+    flight_images = get_flight_images(flight_json)
     if args.raw_json:
         print(flight_json)
     else:
