@@ -28,7 +28,11 @@
         python-dotenv==0.9.1
         telepot==12.7
         ```
-        (Установить можно с помощью ```python -m pip install -r requirements.txt```)
+        (Установить можно с помощью
+        ```
+        python -m pip install -r requirements.txt
+        ```
+        )
     - .env
         ```
         PUBLISH_TIME=    СЕКУНДЫ_МЕЖДУ_ОТПРАВКАМИ
