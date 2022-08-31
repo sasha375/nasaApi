@@ -62,13 +62,13 @@ def main():
     if args.get_dates or no_flags:
         print(get_epic_dates(api_key))
     elif args.get_images:
-        if args.date == None:
+        if not args.date:
             parser.print_help()
             print("ERROR: --date is required for --get-images")
             exit(1)
         print(get_epic_image_ids(api_key, args.date))
     elif args.get_image_url:
-        if args.date == None or args.image_id == None:
+        if not args.date or not args.image_id:
             parser.print_help()
             print("ERROR: --date and --image_id is required for --get-images")
             exit(1)
