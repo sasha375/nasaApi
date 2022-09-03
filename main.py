@@ -10,6 +10,7 @@ import epic, apod, spacex, download
 
 os.makedirs("images", exist_ok=True)
 
+
 def post_forever(bot, imageList):
     while True:
         for imageToPost in imageList:
@@ -20,6 +21,7 @@ def post_forever(bot, imageList):
                 print("Error occured\n", type(e).__name__+":", str(e))
                 time.sleep(1)
         imageList = random.shuffle(imageList)
+
 
 def main():
     load_dotenv(".env")
@@ -36,7 +38,6 @@ def main():
         if not publish_time:
             parser.print_help()
             print("ERROR: specify PUBLISH_TIME in .env or args")
-
 
     bot = telegram.initBot(os.environ["TELEGRAM_TOKEN"])
 
