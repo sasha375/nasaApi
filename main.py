@@ -24,7 +24,6 @@ def post_forever(bot, imageList):
 def main():
     load_dotenv(".env")
     load_dotenv(".secure/.env")
-    NASA_API_KEY = os.environ['NASA_API_KEY']
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--publish-time", type=int, required=False)
@@ -41,27 +40,7 @@ def main():
 
     bot = telegram.initBot(os.environ["TELEGRAM_TOKEN"])
 
-    date = epic.get_epic_dates(NASA_API_KEY)[0]
-    image_id = epic.get_epic_image_ids(NASA_API_KEY, date)[0]
-    url, params = epic.get_epic_image_url(NASA_API_KEY, date, image_id)
-    download.download_image(url, os.path.join("images", "epic-{}-{}.png".format(date, image_id)), params)
-
-    imageList = []
-    
-    for index, image_url in enumerate(apod.get_apod_urls(NASA_API_KEY, 40)):
-        extention = os.path.splitext(image_url)[1]
-        filename = os.path.join("images", "nasa_apod_{}{}".format(index, extention))
-        print("Downloading", filename)
-        download.download_image(image_url, filename)
-        imageList.append(filename)
-        
-    for index, image_url in enumerate(spacex.get_flight_images("5eb87d47ffd86e000604b38a")):
-        extention = os.path.splitext(image_url)[1]
-        filename = os.path.join("images", "nasa_spacex_{}{}".format(index, extention))
-        print("Downloading", filename)
-        download.download_image(image_url, filename)
-        imageList.append(filename)
-    print("Done")
+    imageList = os.listdir("images")
     random.shuffle(imageList)
     post_forever(bot, imageList)
 
