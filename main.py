@@ -10,6 +10,13 @@ import epic, apod, spacex, download
 
 os.makedirs("images", exist_ok=True)
 
+def post_forever(bot, imageList):
+    while True:
+        for imageToPost in imageList:
+            telegram.sendImage(bot, os.environ["TELEGRAM_CHANNEL_ID"], imageToPost)
+            time.sleep(int(os.environ["PUBLISH_TIME"]))
+        imageList = random.shuffle(imageList)
+
 def main():
     load_dotenv(".env")
     load_dotenv(".secure/.env")
@@ -52,11 +59,7 @@ def main():
         imageList.append(filename)
     print("Done")
     random.shuffle(imageList)
-    while True:
-        for imageToPost in imageList:
-            telegram.sendImage(bot, os.environ["TELEGRAM_CHANNEL_ID"], imageToPost)
-            time.sleep(int(os.environ["PUBLISH_TIME"]))
-        imageList = random.shuffle(imageList)
+    post_forever(bot, imageList)
 
 
 if __name__ == "__main__":
