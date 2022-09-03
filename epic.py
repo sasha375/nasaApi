@@ -20,7 +20,7 @@ def get_epic_image_ids(api_key, date):
     response.raise_for_status()
     return [apod["image"] for apod in response.json()]
 
-def get_epic_image_url(api_key, date, image_id):
+def get_epic_image_and_params(api_key, date, image_id):
     return "https://api.nasa.gov/EPIC/archive/natural/{}/png/{}.png".format(date, image_id), {"api_key":api_key}
 
 def main():
@@ -72,7 +72,7 @@ def main():
             parser.print_help()
             print("ERROR: --date and --image_id is required for --get-images")
             exit(1)
-        url, params = get_epic_image_url(api_key, args.date, args.image_id)
+        url, params = get_epic_image_and_params(api_key, args.date, args.image_id)
         print(build_url(url, params))
         extention = os.path.splitext(url)[1]
         if not args.no_download:
