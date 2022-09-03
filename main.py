@@ -13,8 +13,12 @@ os.makedirs("images", exist_ok=True)
 def post_forever(bot, imageList):
     while True:
         for imageToPost in imageList:
-            telegram.sendImage(bot, os.environ["TELEGRAM_CHANNEL_ID"], imageToPost)
-            time.sleep(int(os.environ["PUBLISH_TIME"]))
+            try:
+                telegram.sendImage(bot, os.environ["TELEGRAM_CHANNEL_ID"], imageToPost)
+                time.sleep(int(os.environ["PUBLISH_TIME"]))
+            except (ConnectionError, telegram.error.NetworkError) as e:
+                print("Error occured\n", type(e).__name__+":", str(e))
+                time.sleep(1)
         imageList = random.shuffle(imageList)
 
 def main():
