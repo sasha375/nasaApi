@@ -38,17 +38,14 @@ def main():
     parser.add_argument('--date', default=None, type=str, help='Date to download')
     parser.add_argument('--image-id', default=None, type=str, help='Image id to download')
     parser.add_argument('--no-download', default=None, type=str, help='Do not download image')
-    parser.add_argument('--api-key', type=str, help='NASA Api Key', required=False)
 
     args = parser.parse_args()
 
-    api_key = args.api_key
+    api_key = os.environ.get("NASA_API_KEY", None)
     if not api_key:
-        api_key = os.environ.get("NASA_API_KEY", None)
-        if not api_key:
-            parser.print_help()
-            print("ERROR: specify API_KEY (in args or .env)")
-            exit(1)
+        parser.print_help()
+        print("ERROR: specify API_KEY (in .env)")
+        exit(1)
 
     no_flags = False
     if not (args.get_dates or args.get_images or args.get_image_url):
