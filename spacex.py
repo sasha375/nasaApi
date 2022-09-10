@@ -24,10 +24,10 @@ def main():
     
     args = parser.parse_args()
 
-    flight_json = get_flight(args.flight_id)
-    flight_images = get_flight_images(flight_json)
+    flight_raw = get_flight(args.flight_id)
+    flight_images = get_flight_images(flight_raw)
     if args.raw_json:
-        print(flight_json)
+        print(flight_raw)
     else:
         print(flight_images)
     
