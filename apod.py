@@ -30,7 +30,7 @@ def main():
         api_key = os.environ.get("NASA_API_KEY", None)
         if not api_key:
             parser.print_help()
-            print("ERROR: specify API_KEY (in args or .env)")
+            print("ERROR: specify API_KEY (in .env)")
             exit(1)
 
     urls = get_apod_urls(api_key, args.count)
