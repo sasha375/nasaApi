@@ -33,9 +33,9 @@ def main():
     
     if not args.no_download:
         for index, url in enumerate(flight_images):
-            extention = os.path.splitext(url)[1]
+            extension = os.path.splitext(url)[1]
             os.makedirs("images", exist_ok=True)
-            download_image(url, os.path.join("images", f"spacex-{index}{extention}"))
+            download_image(url, os.path.join("images", f"spacex-{index}{extension}"))
 
 if __name__ == "__main__":
     main()
