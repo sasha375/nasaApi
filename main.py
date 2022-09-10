@@ -11,13 +11,13 @@ import epic, apod, spacex, download
 os.makedirs("images", exist_ok=True)
 
 
-def post_forever(bot, imageList):
+def post_forever(bot, imageList, chId, pTime):
     while True:
         for imageToPost in imageList:
             try:
-                telegram.sendImage(bot, os.environ["TELEGRAM_CHANNEL_ID"], imageToPost)
-                time.sleep(int(os.environ["PUBLISH_TIME"]))
-            except (ConnectionError, telegram.error.NetworkError) as e:
+                telegram.sendImage(bot, chId, imageToPost)
+                time.sleep(int(pTime))
+            except (ConnectionError) as e:
                 print("Error occured\n", type(e).__name__+":", str(e))
                 time.sleep(1)
         imageList = random.shuffle(imageList)
@@ -43,7 +43,7 @@ def main():
 
     imageList = os.listdir("images")
     random.shuffle(imageList)
-    post_forever(bot, imageList)
+    post_forever(bot, imageList, os.environ["TELEGRAM_CHANNEL_ID"], os.environ["PUBLISH_TIME"])
 
 
 if __name__ == "__main__":
