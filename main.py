@@ -41,7 +41,7 @@ def main():
 
     bot = telegram.initBot(os.environ["TELEGRAM_TOKEN"])
 
-    imageList = os.listdir("images")
+    imageList = [os.path.join("images", filename) for filename in os.listdir("images")]
     random.shuffle(imageList)
     post_forever(bot, imageList, os.environ["TELEGRAM_CHANNEL_ID"], os.environ["PUBLISH_TIME"])
 
