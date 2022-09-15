@@ -29,12 +29,6 @@ def main():
 
     parser = argparse.ArgumentParser(
         description='Tool for downloading NASA EPIC images.')
-    parser.add_argument('--get-dates', default=False,
-                        action="store_true", help='Get all dates (use only with api_key)')
-    parser.add_argument('--get-images', default=False,
-                        action="store_true", help='Get all images (required: date, api_key)')
-    parser.add_argument('--get-image-url', default=False,
-                        action="store_true", help='Get all images (required: date, image-id, api_key)')
     parser.add_argument('--date', default=None, type=str, help='Date to download')
     parser.add_argument('--image-id', default=None, type=str, help='Image id to download')
     parser.add_argument('--no-download', default=None, type=str, help='Do not download image')
@@ -47,34 +41,16 @@ def main():
         print("ERROR: specify API_KEY (in .env)")
         exit(1)
 
-    no_flags = False
-    if not (args.get_dates or args.get_images or args.get_image_url):
+    if not args.date or not args.image_id:
         parser.print_help()
-        no_flags = True
+        print("ERROR: --date and --image_id is required for --get-images")
         exit(1)
-    if (args.get_dates and args.get_images) or (args.get_images and args.get_image_url) or (args.get_dates and args.get_image_url):
-        parser.print_help()
-        print("ERROR: there is two flags specified")
-        exit(1)
-    if args.get_dates or no_flags:
-        print(get_epic_dates(api_key))
-    elif args.get_images:
-        if not args.date:
-            parser.print_help()
-            print("ERROR: --date is required for --get-images")
-            exit(1)
-        print(get_epic_image_ids(api_key, args.date))
-    elif args.get_image_url:
-        if not args.date or not args.image_id:
-            parser.print_help()
-            print("ERROR: --date and --image_id is required for --get-images")
-            exit(1)
-        url, params = get_epic_image_and_params(api_key, args.date, args.image_id)
-        print(build_url(url, params))
-        extention = os.path.splitext(url)[1]
-        if not args.no_download:
-            os.makedirs("images", exist_ok=True)
-            download_image(url, os.path.join("images", "epic-{args.date}-{args.image_id}{extention}"))
+    url, params = get_epic_image_and_params(api_key, args.date, args.image_id)
+    print(build_url(url, params))
+    extention = os.path.splitext(url)[1]
+    if not args.no_download:
+        os.makedirs("images", exist_ok=True)
+        download_image(url, os.path.join("images", "epic-{args.date}-{args.image_id}{extention}"))
 
 if __name__ == '__main__':
     main()
