@@ -19,19 +19,16 @@ def main():
     parser = argparse.ArgumentParser(
         description='Tool for downloading NASA APOD images.')
     parser.add_argument("--count", default=1, help="Image count")
-    parser.add_argument("--api-key", type=str, help="NASA Api key", required=False)
     parser.add_argument('--no-download', default=False,
                         action="store_true", help='Do not download photos')
 
     args = parser.parse_args()
 
-    api_key = args.api_key
+    api_key = os.environ.get("NASA_API_KEY", None)
     if not api_key:
-        api_key = os.environ.get("NASA_API_KEY", None)
-        if not api_key:
-            parser.print_help()
-            print("ERROR: specify API_KEY (in .env)")
-            exit(1)
+        parser.print_help()
+        print("ERROR: specify API_KEY (in .env)")
+        exit(1)
 
     urls = get_apod_urls(api_key, args.count)
     if not args.no_download:
