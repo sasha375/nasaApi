@@ -30,11 +30,7 @@ def main():
 
     args = parser.parse_args()
 
-    api_key = os.environ.get("NASA_API_KEY", None)
-    if not api_key:
-        parser.print_help()
-        print("ERROR: specify API_KEY (in .env)")
-        exit(1)
+    api_key = os.environ["NASA_API_KEY"]
 
     if not args.date or not args.image_id:
         parser.print_help()
