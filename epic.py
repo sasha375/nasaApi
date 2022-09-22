@@ -2,6 +2,7 @@ import dotenv
 import requests
 import argparse
 import os
+import random
 
 from download import download_image
 
@@ -9,11 +10,6 @@ def build_url(url, params):
     if params:
         url += "?" + "&".join([f"{k}={v}" for k, v in params.items()])
     return url
-
-def get_epic_dates(api_key):
-    response = requests.get("https://api.nasa.gov/EPIC/api/natural/all", params={"api_key":api_key})
-    response.raise_for_status()
-    return [apod["date"] for apod in response.json()]
 
 def get_epic_image_ids(api_key, date):
     response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{date}", params = {"api_key":api_key})
@@ -30,7 +26,6 @@ def main():
     parser = argparse.ArgumentParser(
         description='Tool for downloading NASA EPIC images.')
     parser.add_argument('--date', default=None, type=str, help='Date to download')
-    parser.add_argument('--image-id', default=None, type=str, help='Image id to download')
     parser.add_argument('--no-download', default=None, type=str, help='Do not download image')
 
     args = parser.parse_args()
@@ -45,7 +40,8 @@ def main():
         parser.print_help()
         print("ERROR: --date and --image_id is required for --get-images")
         exit(1)
-    url, params = get_epic_image_and_params(api_key, args.date, args.image_id)
+    image_id = random.choice(get_epic_image_ids(args.date))
+    url, params = get_epic_image_and_params(api_key, args.date, image_id)
     print(build_url(url, params))
     extention = os.path.splitext(url)[1]
     if not args.no_download:
