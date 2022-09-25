@@ -32,10 +32,6 @@ def main():
 
     api_key = os.environ["NASA_API_KEY"]
 
-    if not args.date or not args.image_id:
-        parser.print_help()
-        print("ERROR: --date and --image_id is required for --get-images")
-        exit(1)
     image_id = random.choice(get_epic_image_ids(args.date))
     url, params = get_epic_image_and_params(api_key, args.date, image_id)
     print(build_url(url, params))
