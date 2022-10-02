@@ -4,6 +4,8 @@ import argparse
 import os
 import random
 
+import datetime
+
 from download import download_image
 
 def build_url(url, params):
@@ -31,14 +33,16 @@ def main():
     args = parser.parse_args()
 
     api_key = os.environ["NASA_API_KEY"]
+    date_object = datetime.datetime.strptime(args.date, "%d-%m-%Y")
+    date = date_object.strftime("%d/%m/%Y")
 
-    image_id = random.choice(get_epic_image_ids(api_key, args.date))
-    url, params = get_epic_image_and_params(api_key, args.date, image_id)
+    image_id = random.choice(get_epic_image_ids(api_key, date))
+    url, params = get_epic_image_and_params(api_key, date, image_id)
     print(build_url(url, params))
     extention = os.path.splitext(url)[1]
     if not args.no_download:
         os.makedirs("images", exist_ok=True)
-        download_image(url, os.path.join("images", "epic-{args.date}-{args.image_id}{extention}"))
+        download_image(url, os.path.join("images", "epic-{date}-{args.image_id}{extention}"))
 
 if __name__ == '__main__':
     main()
