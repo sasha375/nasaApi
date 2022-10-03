@@ -34,7 +34,7 @@ def main():
 
     api_key = os.environ["NASA_API_KEY"]
     date_object = datetime.datetime.strptime(args.date, "%d-%m-%Y")
-    date = date_object.strftime("%d/%m/%Y")
+    date = date_object.strftime("%Y/%m/%d")
 
     image_id = random.choice(get_epic_image_ids(api_key, date))
     url, params = get_epic_image_and_params(api_key, date, image_id)
