@@ -34,7 +34,7 @@ def main():
 
     args = parser.parse_args()
 
-    api_key = "DEMO_KEY"
+    api_key = os.environ["NASA_API_KEY"]
     date_object = datetime.datetime.strptime(args.date, "%d-%m-%Y")
     date_with_url_format = date_object.strftime("%Y/%m/%d")
 
