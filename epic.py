@@ -44,7 +44,7 @@ def main():
     extention = os.path.splitext(url)[1]
     if not args.no_download:
         os.makedirs("images", exist_ok=True)
-        download_image(url, os.path.join("images", "epic-{date}-{args.image_id}{extention}"))
+        download_image(url, os.path.join("images", "epic-{date}-{args.image_id}{extention}"), params={"api_key":api_key})
 
 if __name__ == '__main__':
     main()
