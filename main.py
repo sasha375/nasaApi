@@ -1,11 +1,9 @@
 from dotenv import load_dotenv
-import requests
 import os
 import random
 import time
 
 import telegram
-import epic, apod, spacex, download
 
 os.makedirs("images", exist_ok=True)
 
