@@ -19,7 +19,7 @@ def post_forever(bot, imageList, chId, pTime):
             except (ConnectionError) as e:
                 print("Error occured\n", "{}: {}".format(type(e).__name__, e))
                 time.sleep(1)
-        imageList = random.shuffle(imageList)
+        random.shuffle(imageList)
 
 
 def main():
