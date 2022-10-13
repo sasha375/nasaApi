@@ -69,7 +69,7 @@
     &#9745; Использование как библииотеку python
 - Запуск
     ```
-    python apod.py [--count COUNT] --api-key NASA_API_KEY
+    python apod.py [--count COUNT]
     ```
 ## epic.py
 - Описание
@@ -83,7 +83,7 @@
     &#9745; Использование как библииотеку python
 - Запуск
     ```
-    python epic.py [--get-dates] [--get-images --date DATE] [--get-image-url --date DATE --image-id IMAGE_ID] --api-key NASA_API_KEY
+    python epic.py --date DATE
     ```
 ## spacex.py
 - Описание
