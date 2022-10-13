@@ -1,4 +1,3 @@
-import argparse
 from dotenv import load_dotenv
 import requests
 import os
@@ -27,23 +26,13 @@ def main():
     load_dotenv(".env")
     load_dotenv(".secure/.env")
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--publish-time", type=int, required=False)
-
-    args = parser.parse_args()
-
-    publish_time = os.environ.get("PUBLISH_TIME", None)
-    if not publish_time:
-        publish_time = args.publish_time
-        if not publish_time:
-            parser.print_help()
-            print("ERROR: specify PUBLISH_TIME in .env or args")
+    publish_time = os.environ["PUBLISH_TIME"]
 
     bot = telegram.initBot(os.environ["TELEGRAM_TOKEN"])
 
     imageList = [os.path.join("images", filename) for filename in os.listdir("images")]
     random.shuffle(imageList)
-    post_forever(bot, imageList, os.environ["TELEGRAM_CHANNEL_ID"], os.environ["PUBLISH_TIME"])
+    post_forever(bot, imageList, os.environ["TELEGRAM_CHANNEL_ID"], publish_time)
 
 
 if __name__ == "__main__":
