@@ -5,9 +5,6 @@ import time
 
 import telegram
 
-os.makedirs("images", exist_ok=True)
-
-
 def post_forever(bot, imageList, chId, pTime):
     while True:
         for imageToPost in imageList:
