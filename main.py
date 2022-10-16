@@ -21,7 +21,7 @@ def main():
     load_dotenv(".env")
     load_dotenv(".secure/.env")
 
-    publish_time = os.environ["PUBLISH_TIME"]
+    publish_time = os.getenv("PUBLISH_TIME", 14400)
 
     bot = telegram.initBot(os.environ["TELEGRAM_TOKEN"])
 
