@@ -14,8 +14,8 @@ def build_url(url, params):
     return url
 
 def get_epic_image_ids(api_key, date_object):
-    date_formated = date_object.strftime("%Y-%m-%d")
-    response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{date_formated}", params = {"api_key":api_key})
+    date_formatted = date_object.strftime("%Y-%m-%d")
+    response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{date_formatted}", params = {"api_key":api_key})
     response.raise_for_status()
     return [apod["image"] for apod in response.json()]
 
@@ -40,10 +40,10 @@ def main():
     image_id = random.choice(get_epic_image_ids(api_key, date_object))
     url, params = get_epic_image_and_params(api_key, date_object, image_id)
     print(build_url(url, params))
-    extention = os.path.splitext(url)[1]
+    extension = os.path.splitext(url)[1]
     if not args.no_download:
         os.makedirs("images", exist_ok=True)
-        download_image(url, os.path.join("images", f"epic-{args.date}-{image_id}{extention}"), params={"api_key":api_key})
+        download_image(url, os.path.join("images", f"epic-{args.date}-{image_id}{extension}"), params={"api_key":api_key})
 
 if __name__ == '__main__':
     main()

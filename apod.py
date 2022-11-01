@@ -33,9 +33,9 @@ def main():
     urls = get_apod_urls(api_key, args.count)
     if not args.no_download:
         for index, url in enumerate(urls):
-            extention = os.path.splitext(url)[1]
+            extension = os.path.splitext(url)[1]
             os.makedirs("images", exist_ok=True)
-            download_image(url, os.path.join("images", f"apod-{index}{extention}"))
+            download_image(url, os.path.join("images", f"apod-{index}{extension}"))
 
     print(urls)
     

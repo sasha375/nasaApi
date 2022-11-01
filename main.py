@@ -13,7 +13,7 @@ def post_forever(bot, imageList, chId, pTime):
                 telegram.sendImage(bot, chId, imageToPost)
                 time.sleep(int(pTime))
             except urllib3.exceptions.MaxRetryError as e:
-                print("Error occured\n", "{}: {}".format(type(e).__name__, e))
+                print("Error occurred\n", "{}: {}".format(type(e).__name__, e))
                 time.sleep(1)
         random.shuffle(imageList)
 
