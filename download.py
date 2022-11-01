@@ -2,8 +2,6 @@ import requests
 import argparse
 
 def download_image(url, imgname, params=None):
-    if not params:
-        params = {}
     image_content = requests.get(url, params=params).content
     
     with open(imgname, "bw") as f:
