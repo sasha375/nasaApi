@@ -16,7 +16,7 @@ def main():
     parser.add_argument('--channel-id', type=str, 
                         help='Telegram channel id', required=True)
     parser.add_argument('--image-path', type=str,
-                        help='Image path or glob mask', required=True)
+                        help='Image path or glob mask', default="images")
     parser.add_argument('--token', type=str, help='Telegram token', required=True)
     
     args = parser.parse_args()
