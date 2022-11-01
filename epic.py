@@ -14,8 +14,8 @@ def build_url(url, params):
     return url
 
 def get_epic_image_ids(api_key, date_object):
-    date_formatted = date_object.strftime("%Y-%m-%d")
-    response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{date_formatted}", params = {"api_key":api_key})
+    formatted_date = date_object.strftime("%Y-%m-%d")
+    response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{formatted_date}", params = {"api_key":api_key})
     response.raise_for_status()
     return [apod["image"] for apod in response.json()]
 
