@@ -10,7 +10,7 @@ def post_forever(bot, imageList, chId, pTime):
     while True:
         for imageToPost in imageList:
             try:
-                telegram.sendImage(bot, chId, imageToPost)
+                telegram.send_image(bot, chId, imageToPost)
                 time.sleep(int(pTime))
             except urllib3.exceptions.MaxRetryError as e:
                 print("Error occurred\n", "{}: {}".format(type(e).__name__, e))
@@ -24,11 +24,11 @@ def main():
 
     publish_time = os.getenv("PUBLISH_TIME", 14400)
 
-    bot = telegram.initBot(os.environ["TELEGRAM_TOKEN"])
+    bot = telegram.init_bot(os.environ["TELEGRAM_TOKEN"])
 
-    imageList = [os.path.join("images", filename) for filename in os.listdir("images")]
-    random.shuffle(imageList)
-    post_forever(bot, imageList, os.environ["TELEGRAM_CHANNEL_ID"], publish_time)
+    image_list = [os.path.join("images", filename) for filename in os.listdir("images")]
+    random.shuffle(image_list)
+    post_forever(bot, image_list, os.environ["TELEGRAM_CHANNEL_ID"], publish_time)
 
 
 if __name__ == "__main__":

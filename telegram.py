@@ -3,10 +3,10 @@ import argparse
 import glob
 import random
 
-def initBot(token):
+def init_bot(token):
     return telepot.Bot(token)
 
-def sendImage(bot, channelId, photoPath):
+def send_image(bot, channelId, photoPath):
     with open(photoPath, "br") as f:
         bot.sendPhoto(channelId, f)
 
@@ -21,9 +21,9 @@ def main():
     
     args = parser.parse_args()
 
-    bot = initBot(args.token)
+    bot = init_bot(args.token)
     images = glob.glob(args.image_path)
-    sendImage(bot, args.channel_id, random.choose(images))
+    send_image(bot, args.channel_id, random.choose(images))
 
 if __name__ == "__main__":
     main()
