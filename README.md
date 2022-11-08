@@ -55,7 +55,7 @@
     &#9745; Использование как библииотеку python
 - Запуск
     ```
-    python telegram.py CHANNEL_ID IMAGE_PATH BOT_TOKEN
+    python telegram.py CHANNEL_ID IMAGE_PATH
     ```
 ## apod.py
 - Описание
