@@ -20,8 +20,8 @@ def get_epic_image_ids(api_key, date_object):
     return [apod["image"] for apod in response.json()]
 
 def get_epic_image_and_params(api_key, date_object, image_id):
-    date_formated = date_object.strftime("%Y/%m/%d")
-    return "https://api.nasa.gov/EPIC/archive/natural/{}/png/{}.png".format(date_formated, image_id), {"api_key":api_key}
+    formatted_date = date_object.strftime("%Y/%m/%d")
+    return "https://api.nasa.gov/EPIC/archive/natural/{}/png/{}.png".format(formatted_date, image_id), {"api_key":api_key}
 
 def main():
     if os.path.exists(".secure/.env"):
