@@ -2,7 +2,9 @@ import requests
 import argparse
 
 def download_image(url, imgname, params=None):
-    image_content = requests.get(url, params=params).content
+    responce = requests.get(url, params=params)
+    responce.raise_for_status()
+    image_content = responce.content
     
     with open(imgname, "bw") as f:
         f.write(image_content)
