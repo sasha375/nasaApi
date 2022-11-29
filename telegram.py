@@ -26,7 +26,7 @@ def main():
 
     bot = init_bot(os.environ["TELEGRAM_TOKEN"])
     images = glob.glob(args.image_path)
-    send_image(bot, os.environ["TELEGRAM_CHANNEL_ID"], random.choose(images))
+    send_image(bot, os.environ["TELEGRAM_CHANNEL_ID"], random.choice(images))
 
 if __name__ == "__main__":
     main()
