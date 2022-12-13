@@ -24,8 +24,13 @@ def main():
     
     args = parser.parse_args()
 
+    if os.path.isdir(args.image_path):
+        image_path = args.image_path
+    else:
+        image_path = random.choice(os.listdir(args.image_path))
+
     bot = init_bot(os.environ["TELEGRAM_TOKEN"])
-    send_image(bot, os.environ["TELEGRAM_CHANNEL_ID"], args.image_path)
+    send_image(bot, os.environ["TELEGRAM_CHANNEL_ID"], image_path)
 
 if __name__ == "__main__":
     main()
