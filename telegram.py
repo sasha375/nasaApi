@@ -10,9 +10,9 @@ def init_bot(token):
     return telepot.Bot(token)
 
 
-def send_image(bot, channelId, photoPath):
-    with open(photoPath, "br") as f:
-        bot.sendPhoto(channelId, f)
+def send_image(bot, channel_id, photo_path):
+    with open(photo_path, "br") as f:
+        bot.sendPhoto(channel_id, f)
 
 
 def main():

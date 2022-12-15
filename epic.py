@@ -42,8 +42,9 @@ def main():
                         type=str,
                         help='Date to download')
     parser.add_argument('--no-download',
-                        default=None,
-                        type=str,
+                        default=False,
+                        type=bool,
+                        action="set_true",
                         help='Do not download image')
 
     args = parser.parse_args()
