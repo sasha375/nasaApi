@@ -24,7 +24,7 @@ def main():
     
     args = parser.parse_args()
 
-    if os.path.isdir(args.image_path):
+    if os.path.isfile(args.image_path):
         image_path = args.image_path
     else:
         image_path = random.choice(os.listdir(args.image_path))
