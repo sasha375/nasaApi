@@ -5,11 +5,13 @@ import os
 
 from download import download_image
 
+
 def get_apod_urls(api_key, count):
     response = requests.get("https://api.nasa.gov/planetary/apod",
                             params={"api_key": api_key, "count": count})
     response.raise_for_status()
-    return [apod["url"] for apod in response.json() if apod["media_type"]=="image"]
+    return [apod["url"] for apod in response.json()
+            if apod["media_type"] == "image"]
 
 
 def main():
@@ -35,9 +37,11 @@ def main():
         for index, url in enumerate(urls):
             extension = os.path.splitext(url)[1]
             os.makedirs("images", exist_ok=True)
-            download_image(url, os.path.join("images", f"apod-{index}{extension}"))
+            download_image(url, os.path.join("images",
+                                             f"apod-{index}{extension}"))
 
     print(urls)
-    
+
+
 if __name__ == "__main__":
     main()
