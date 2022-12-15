@@ -51,13 +51,14 @@ def main():
     api_key = os.environ["NASA_API_KEY"]
     date_object = datetime.datetime.strptime(args.date, "%d-%m-%Y")
 
-    image_id = random.choice(get_epic_image_ids(api_key, date_object))
-    url, params = get_epic_image_and_params(api_key, date_object, image_id)
-    print(build_url(url, params))
-    extension = os.path.splitext(url)[1]
-    if not args.no_download:
-        os.makedirs("images", exist_ok=True)
-        download_image(url, os.path.join("images", f"epic-{args.date}-{image_id}{extension}"), params={"api_key":api_key})
+    image_ids = get_epic_image_ids(api_key, date_object)
+    for image_id in image_ids:
+        url, params = get_epic_image_and_params(api_key, date_object, image_id)
+        print(build_url(url, params))
+        extension = os.path.splitext(url)[1]
+        if not args.no_download:
+            os.makedirs("images", exist_ok=True)
+            download_image(url, os.path.join("images", f"epic-{args.date}-{image_id}{extension}"), params={"api_key":api_key})
 
 if __name__ == '__main__':
     main()
